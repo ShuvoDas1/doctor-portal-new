@@ -1,0 +1,26 @@
+.contact-container{
+    height: 480px;
+    background-image: url('../../../images/chair2.png');
+    background-size: cover;
+    color: #fff;
+}
+
+.contact-container-inner{
+    background-color: #3A4257;
+    height: 480px;
+    width: 100%;
+    opacity: 0.95;
+}
+.inputs-form{
+    position: relative;
+}
+.btn-submit{
+    margin: 0;
+    position: absolute;
+    top: 100%;
+    left: 40%;
+    margin-top: 10px;
+    color: #fff;
+    padding: 10px 50px;
+    border-radius: 0;
+}

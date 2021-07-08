@@ -1,0 +1,20 @@
+.make-appointment-container{
+}
+.make-appointment-info{
+    height: 450px;
+    background-image: url(../../../images/chair2.png);
+    background-size: cover;
+    position: relative;
+}
+.make-appointment-inner{
+    background-color: #3A4257;
+    height: 450px;
+    width: 100%;
+    opacity: 0.95;
+}
+.doctor-img{
+    height: 560px;
+    /* margin-bottom: 100px; */
+    position: absolute;
+    bottom: 0;
+}

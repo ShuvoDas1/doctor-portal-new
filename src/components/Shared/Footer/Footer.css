@@ -1,0 +1,14 @@
+.footer-container{
+    height: 450px;
+    padding-top: 80px;
+    background-color: rgb(38, 39, 39);
+    color: #fff;
+    background-size: cover;
+}
+.brand-icon{
+    font-size:40px;
+    cursor:pointer;
+}
+.brand-icon:hover{
+    color: lightseagreen;
+}
