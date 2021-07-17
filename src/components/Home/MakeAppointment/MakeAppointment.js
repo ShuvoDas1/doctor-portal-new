@@ -4,11 +4,11 @@ import doctor from "../../../images/doctor.png";
 import "./MakeAppointment.css";
 const MakeAppointment = () => {
   return (
-    <section className=" make-appointment-container d-flex justify-content-center">
+    <section className="make-appointment-container d-flex justify-content-center">
       <div className="w-75 make-appointment-info">
         <div className="make-appointment-inner row">
           <div className="col-md-6">
-            <img src={doctor} className="img-fluid doctor-img" alt="" />
+            <img src={doctor} style={{height: '600px'}} className="img-fluid doctor-img" alt="" />
           </div>
           <div className="col-md-6 pt-5">
             <h4 className="text-info">APPOINTMENT</h4>

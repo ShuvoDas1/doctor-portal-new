@@ -1,7 +1,9 @@
-import React from "react";
+import React,{useState} from "react";
 import Modal from "react-modal";
 import { useForm } from "react-hook-form";
 import {connect} from 'react-redux'
+import { addAppointment } from "../../../Redux/AppointmentDetails/AppointmentDetailsActions";
+
 const customStyles = {
   content: {
     // width: "550px",
@@ -16,16 +18,37 @@ const customStyles = {
 };
 Modal.setAppElement("#root");
 
-const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn,date }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm();
+const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn,date, addAppointment }) => {
+  // const [appointment, setAppointment] = useState({
+  //   // name: '',
+  //   // phoneNumber: '',
+  //   // email: '',
+  //   // age: '',
+  //   // weight: ''
+  // })
 
-  const onSubmit = (data) => {
-    console.log("submitted");
+  const {register, handleSubmit,formState: { errors }} = useForm();
+
+  const onSubmit = data => {
+        data.service = appointmentOn;
+        data.date= date;
+        data.created= new Date();
+        
+        addAppointment(data);
+      
+      // fetch('http://localhost:4000/addAppointment',{
+      //       method: 'POST',
+      //       headers:{'Content-Type': 'application/json'},
+      //       body: JSON.stringify(data)
+      //   })
+      //   .then(res => res.json())
+      //   .then(success => {
+      //       closeModal();
+      //       alert('Appointment submit successfully')
+      //   })       
   };
+
+  
 
   return (
     <div>
@@ -118,4 +141,4 @@ const mapStateToProps = (state) =>{
     }
 }
 
-export default connect(mapStateToProps,null) (AppointmentForm);
+export default connect(mapStateToProps,{addAppointment}) (AppointmentForm);

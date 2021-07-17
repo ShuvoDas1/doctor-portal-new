@@ -6,9 +6,7 @@ const initialDate = {
 
 export const appointmentDateReducers = (state = initialDate, action)=>{
     switch (action.type) {
-        case SELECT_DATE:
-            console.log(state);
-            
+        case SELECT_DATE:        
             return{
                 ...state,
                 date: action.payload
