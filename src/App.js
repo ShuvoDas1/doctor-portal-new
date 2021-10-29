@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Appointment from "./components/Appointment/Appointment/Appointment";
 import Dashboard from './components/Dashboard/Dashboard/Dashboard';
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
           <Route path='/dashboard'>
             <Dashboard></Dashboard>
           </Route>
+          <Route path='/*'>
+            <NotFound/>
+          </Route>
+
         </Switch>
       </Router>
     </Provider>

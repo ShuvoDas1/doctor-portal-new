@@ -1,0 +1,29 @@
+@import '../../../_base';
+.sidebar__wrapper{
+    padding: 40px 30px;
+    background-color: $primary_color;
+    overflow: hidden;
+    width: 270px;
+    .item{
+        display: flex;
+        text-decoration: none;
+        color: $card_color;
+        align-items: flex-start;
+        padding: 10px 0px;
+        p{
+            padding-left: 3px;
+        }
+        svg{
+            width: 25px
+        }
+        &:last-child{
+            margin-top: 150px;
+        }
+
+        &:hover{
+            color: rgb(27, 34, 27);
+            font-weight: bold;
+        }
+    }
+    
+}

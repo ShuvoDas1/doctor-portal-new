@@ -1,223 +1,54 @@
-import React from "react";
-import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Drawer from "@material-ui/core/Drawer";
-import Box from "@material-ui/core/Box";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
-import Badge from "@material-ui/core/Badge";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import Link from "@material-ui/core/Link";
-import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import NotificationsIcon from "@material-ui/icons/Notifications";
-import AppsIcon from '@material-ui/icons/Apps';
-import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
-import PeopleIcon from '@material-ui/icons/People';
-import NoteIcon from '@material-ui/icons/Note';
-import SettingsIcon from '@material-ui/icons/Settings';
-// import { mainListItems, secondaryListItems } from './listItems';
-// import Chart from './Chart';
-// import Deposits from './Deposits';
-// import Orders from './Orders';
+import React from 'react'
+import Sidebar from '../Sidebar/Sidebar'
+import Calendar from 'react-calendar'
+import 'react-calendar/dist/Calendar.css'
+import { useState, useEffect } from 'react'
+import AppointmentsByDate from '../AppointmentsByDate/AppointmentsByDate'
+import { connect } from 'react-redux'
+import { appointmentsByDate } from '../../../Redux/AppointmentsByDate/AppointmentsByDateAction'
+import axios from 'axios'
+import './Dashboard.scss'
+const Dashboard = ({ appointmentsByDate }) => {
+  const [selectedDate, setSelectedDate] = new useState(new Date())
+  const [appointments, setAppointments] = new useState([])
 
-function Copyright() {
+  const handleDateChange = (date) => {
+    setSelectedDate(date)
+  }
+
+  useEffect(() => {
+    appointmentsByDate(selectedDate.toDateString())
+  }, [selectedDate])
+
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
+    <section className="dashboard__wrapper">
+      <div className="sidebar">
+        <Sidebar />
+      </div>
+      <div className="dashboard">
+        <h5 className="dashboard_title">Dashboard</h5>
+        <div className="counter">
+          <div className="counter__item" style={{backgroundColor: "#F1536E"}}>
+            <span className='total'>10</span>
+            <span>Pending Appointments</span>
+          </div>
+          <div className="counter__item" style={{backgroundColor: "#3DA5F4"}}>
+            <span className='total'>10</span>
+            <span>Pending Appointments</span>
+          </div>
+          <div className="counter__item" style={{backgroundColor: "#00C689"}}>
+            <span className='total'>10</span>
+            <span>Pending Appointments</span>
+          </div>
+          <div className="counter__item" style={{backgroundColor: "#FDA006"}}>
+            <span className='total'>10</span>
+            <span>Pending Appointments</span>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+  )
 }
 
-const drawerWidth = 240;
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex"
-  },
-  toolbar: {
-    paddingRight: 24 // keep right padding when drawer closed
-  },
-  toolbarIcon: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    padding: "0 8px",
-    ...theme.mixins.toolbar
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  },
-  menuButton: {
-    marginRight: 36
-  },
-  menuButtonHidden: {
-    display: "none"
-  },
-  title: {
-    flexGrow: 1
-  },
-  drawerPaper: {
-    position: "relative",
-    whiteSpace: "nowrap",
-    width: drawerWidth,
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  },
-  drawerPaperClose: {
-    overflowX: "hidden",
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    }),
-    width: theme.spacing(7),
-    [theme.breakpoints.up("sm")]: {
-      width: theme.spacing(9)
-    }
-  },
-  appBarSpacer: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    height: "100vh",
-    overflow: "auto"
-  },
-  container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4)
-  },
-  paper: {
-    padding: theme.spacing(2),
-    display: "flex",
-    overflow: "auto",
-    flexDirection: "column"
-  },
-  fixedHeight: {
-    height: 240
-  }
-}));
-
-const Dashboard = () => {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position="absolute"
-        className={clsx(classes.appBar, open && classes.appBarShift)}
-      >
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(
-              classes.menuButton,
-              open && classes.menuButtonHidden
-            )}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            className={classes.title}
-          >
-            Dashboard
-          </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose)
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        {/* <List>{mainListItems}</List> */}
-        <List className='ms-4 mt-4'>
-          <h6><AppsIcon /> <span className='ms-4'>Dashboard</span> </h6>
-          <h6 className='my-5'><CalendarTodayIcon /> <span className='ms-4'>Appointments</span></h6>
-          <h6><PeopleIcon /> <span className='ms-4'>Patients</span></h6>
-          <h6 className='my-5'><NoteIcon /> <span className='ms-4'>Prescription</span></h6>
-          <h6><SettingsIcon /> <span className='ms-4'>Setting</span></h6>
-          
-        </List>
-        <Divider />
-        {/* <List>{secondaryListItems}</List> */}
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
-            {/* Chart */}
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>{/* <Chart /> */}</Paper>
-            </Grid>
-            {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>{/* <Deposits /> */}</Paper>
-            </Grid>
-            {/* Recent Orders */}
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>{/* <Orders /> */}</Paper>
-            </Grid>
-          </Grid>
-          <Box pt={4}>
-            <Copyright />
-          </Box>
-        </Container>
-      </main>
-    </div>
-  );
-};
-
-export default Dashboard;
+export default connect(null, { appointmentsByDate })(Dashboard)

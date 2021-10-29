@@ -25,15 +25,8 @@
  export const addAppointment = newAppointmentObj =>{
      return (dispatch) => {
         dispatch(addAppointmentRequest())
-        // fetch('http://localhost:4000/addAppointment',{
-        //     method: 'POST',
-        //     headers:{'Content-Type': 'application/json'},
-        //     body: JSON.stringify(newAppointmentObj)
-        // })
-        // axios.post('https://jsonplaceholder.typicode.com/posts',{newAppointmentObj})
         axios.post('http://localhost:4000/addAppointment',newAppointmentObj)
         .then(res=>{
-             console.log(res.data)
              dispatch(addAppointmentSuccess(res.data))
         })
         .catch(error=>{

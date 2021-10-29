@@ -1,4 +1,3 @@
-
 import Modal from "react-modal";
 import { useForm } from "react-hook-form";
 import {connect} from 'react-redux'
@@ -26,15 +25,18 @@ const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn,date, addAppoi
   //   // age: '',
   //   // weight: ''
   // })
-
+  // console.log(date);
   const {register, handleSubmit,formState: { errors }} = useForm();
 
   const onSubmit = data => {
+
         data.service = appointmentOn;
-        data.date= date;
-        data.created= new Date();
+        data.date= date.toDateString();
+        data.created= new Date().toDateString();
         
         addAppointment(data);
+        closeModal();
+        alert('Appointment submit successfully')
       
       // fetch('http://localhost:4000/addAppointment',{
       //       method: 'POST',
@@ -44,7 +46,7 @@ const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn,date, addAppoi
       //   .then(res => res.json())
       //   .then(success => {
       //       closeModal();
-      //       alert('Appointment submit successfully')
+      //       
       //   })       
   };
 

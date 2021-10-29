@@ -1,0 +1,40 @@
+@import '../../../_base';
+.dashboard__wrapper{
+    display: flex;
+    justify-content: space-around;
+    // padding: 30px 10px;
+    width: 100%;
+    .sidebar{
+        
+    }
+    .dashboard{
+        flex: 2;
+        background-color: $bg_color;
+        padding: 20px 30px;
+        &_title{
+            font-weight: bold;
+        }
+        .counter{
+            display: flex;
+            // padding: 10px 20px;
+            // justify-content: space-between;
+
+            &__item{
+                // width: 60px;
+                padding: 5px 40px;
+                display: flex;
+                align-items: center;
+                margin-right: 10px;
+                border-radius: 10px;
+                color: white;
+                .total{
+                    font-size: 50px;
+                    // color: $card_color;
+                    font-weight: bold;
+                    padding-right: 5px;
+                }
+            }
+            
+        }
+    }
+}

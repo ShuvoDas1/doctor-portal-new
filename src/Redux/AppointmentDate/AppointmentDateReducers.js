@@ -1,7 +1,7 @@
 import {SELECT_DATE} from './AppintmentDateTypes'
 
 const initialDate = {
-    date : new Date()
+    date : ''
 }
 
 export const appointmentDateReducers = (state = initialDate, action)=>{
