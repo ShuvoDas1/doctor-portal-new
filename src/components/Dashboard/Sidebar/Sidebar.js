@@ -4,7 +4,7 @@ import './Sidebar.scss'
 const Sidebar = () => {
   return (
     <div className="sidebar__wrapper">
-      <Link className="item">
+      <Link className="item" to='/admin/dashboard'>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class=""
@@ -19,7 +19,7 @@ const Sidebar = () => {
         </svg>
         <p>Dashboard</p>
       </Link>
-      <Link className="item">
+      <Link className="item" to="/admin/appointments">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-6 w-6"
@@ -36,7 +36,7 @@ const Sidebar = () => {
         </svg>
         <p>Appointments</p>
       </Link>
-      <Link className="item">
+      <Link className="item" to="/admin/patients">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-6 w-6"
@@ -53,7 +53,7 @@ const Sidebar = () => {
         </svg>
         <p>Patients</p>
       </Link>
-      <Link className="item">
+      <Link className="item" to='admin/prescriptions'>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-6 w-6"
@@ -70,7 +70,7 @@ const Sidebar = () => {
         </svg>
         <p>Prescriptions</p>
       </Link>
-      <Link className="item">
+      <Link className="item" to='settings'>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-6 w-6"
@@ -93,7 +93,7 @@ const Sidebar = () => {
         </svg>
         <p>Settings</p>
       </Link>
-      <Link className="item">
+      <Link className="item" to='/'>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-6 w-6"

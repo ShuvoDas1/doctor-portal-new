@@ -4,9 +4,6 @@
     justify-content: space-around;
     // padding: 30px 10px;
     width: 100%;
-    .sidebar{
-        
-    }
     .dashboard{
         flex: 2;
         background-color: $bg_color;
@@ -37,4 +34,18 @@
             
         }
     }
+   .appointments__table{
+       margin-top: 40px;
+       padding: 30px 30px;
+       background-color: white;
+       box-shadow: 0px 2px 2px 2px rgb(241, 234, 234);
+       .name__weeks{
+           display: flex;
+           justify-content: space-between;
+           h5{
+            color: rgb(118, 235, 250);
+        }
+       }
+       
+   } 
 }

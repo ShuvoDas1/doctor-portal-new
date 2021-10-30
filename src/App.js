@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Appointment from "./components/Appointment/Appointment/Appointment";
 import Dashboard from './components/Dashboard/Dashboard/Dashboard';
 import NotFound from "./components/NotFound/NotFound";
+import Admin from "./components/Admin/Admin";
 
 function App() {
   return (
@@ -18,8 +19,8 @@ function App() {
           <Route path="/appointment">
             <Appointment></Appointment>
           </Route>
-          <Route path='/dashboard'>
-            <Dashboard></Dashboard>
+          <Route path='/admin'>
+            <Admin/>
           </Route>
           <Route path='/*'>
             <NotFound/>
