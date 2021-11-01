@@ -120,12 +120,12 @@ const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn,date, addAppoi
             <div className="form-group col-md-4">
               <input
                 type="text"
-                placeholder="Weight"
-                name="weight"
+                placeholder="VisitingHour AM/PM"
+                name="visitingHour"
                 className="form-control"
-                {...register("weight", { required: true })}
+                {...register("visitingHour", { required: true })}
               />
-              {errors.weight && <span>This field is required</span>}
+              {errors.visitingHour && <span>This field is required</span>}
             </div>
           </div>
           <div className="form-group ">

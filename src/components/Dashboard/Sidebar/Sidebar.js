@@ -53,7 +53,7 @@ const Sidebar = () => {
         </svg>
         <p>Patients</p>
       </Link>
-      <Link className="item" to='admin/prescriptions'>
+      <Link className="item" to='/admin/prescriptions'>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-6 w-6"
@@ -70,7 +70,7 @@ const Sidebar = () => {
         </svg>
         <p>Prescriptions</p>
       </Link>
-      <Link className="item" to='settings'>
+      <Link className="item" to='/admin/settings'>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-6 w-6"

@@ -9,6 +9,8 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 import './Dashboard.scss'
 import { Dropdown, Table } from 'react-bootstrap'
+import { Route, Switch } from 'react-router'
+import AppointmentsByDate from '../AppointmentsByDate/AppointmentsByDate'
 const Dashboard = () => {
   const tableHeader = [
     'Sl',

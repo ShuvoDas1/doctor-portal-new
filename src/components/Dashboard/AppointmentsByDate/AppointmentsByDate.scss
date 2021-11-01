@@ -1,0 +1,45 @@
+@import '../../../_base';
+.appointments__wrapper {
+    display: flex;
+    padding: 30px 40px;
+    justify-content: space-around;
+    .calendar__wrapper{
+        flex: 1;
+        .calender{
+            border: none;
+            padding: 30px 10px;
+        }
+    }
+    .appointments{
+        flex: 1;
+        background-color: #FFFFFF;
+        box-shadow: 2px 2px 2px 2px whitesmoke;
+        padding: 20px 25px;
+        border-radius: 15px;
+        .appointments__header{
+            display: flex;
+            justify-content: space-between;
+            p{
+                color: $primary_color;
+            }
+
+            span{
+                color: rgb(185, 184, 184);
+            }
+        }
+        &__table{
+            .action{
+                cursor: pointer;
+                background-color: $primary_color;
+                color: white;
+                // height: 30px;
+                padding: 5px;
+                border: none;
+                // &:checked{
+                //     outline: none;
+                // }
+            }
+        }
+
+    }
+}

@@ -19,13 +19,13 @@ export const appointmentByDateFailure = (error) => {
     }
 }
 
-export const appointmentsByDate = (date) => {
+export const getAppointmentsByDate= (date) => {
     // console.log(date)
     return(dispatch)=>{
         dispatch(appointmentByDateRequest())
         axios.post('http://localhost:4000/appointmentsByDate',{date})
         .then(res => {
-            console.log(res.data);
+            // console.log(res.data);
             dispatch(appointmentByDateSuccess(res.data))
 
         })

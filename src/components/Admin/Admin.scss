@@ -1,4 +1,12 @@
+@import '../../_base';
 .admin__wrapper{
     display: flex;
-    justify-content: space-around;
+    // justify-content: space-between;
+    .sidebar{
+        width: 300px;
+    }
+    .content__wrapper{
+        flex: 2;
+        background-color: $bg_color;
+    }
 }
