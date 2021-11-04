@@ -4,12 +4,42 @@ import { connect } from 'react-redux'
 import './AppointmentsByDate.scss'
 import { getAppointmentsByDate } from '../../../Redux/AppointmentsByDate/AppointmentsByDateAction'
 import { Dropdown, Table } from 'react-bootstrap'
+
+
 const AppointmentsByDate = ({ getAppointmentsByDate, appointments }) => {
-  const [date, setDate] = useState(new Date())
-  // console.log(appointments);
+  const [date, setDate] = useState(new Date());
+  const [isVisited,setIsVisited] = useState("");
+  const [selectedId,setSelectedId] = useState(null)
+
+  console.log(isVisited);
+
+  const handleIsVisited = (e,id) => {
+    setIsVisited(e.target.value);
+    setSelectedId(id);
+    
+  }
+
+  useEffect(()=>{
+    const updateData =  {selectedId, isVisited};
+    // console.log(updateData);
+    fetch(`http://localhost:4000/appointments/update/${selectedId}`,{
+      method: 'PATCH',
+      headers: { 'content-type': 'application/json'},
+      body: JSON.stringify(updateData)
+
+    })
+    .then(res=>res.json())
+    .then(data=>console.log(data))
+  },[selectedId])
+
+
+  
+
   useEffect(() => {
     getAppointmentsByDate(date.toDateString())
   }, [date])
+
+
   return (
     <div className="appointments__wrapper">
       <div className="calendar__wrapper">
@@ -37,15 +67,17 @@ const AppointmentsByDate = ({ getAppointmentsByDate, appointments }) => {
             {appointments.map((appointment) => (
               <tr>
                 <td>{appointment.name}</td>
-                <td>{appointment.visitingTime}</td>
+                <td>{appointment.visitingHour}</td>
                 <td>
                   <select
                     className="form-select action form-control"
                     aria-label="Default select example"
+                   
+                  onChange={(e)=>handleIsVisited(e,appointment._id)}
+                  // onChange={()=>getId(appointment._id)}                    
                   >
-                    <option selected>Select Status</option>
-                    <option value="Pending">Not Visited</option>
-                    <option value="On Going">Visited</option>
+                    <option   selected  value="not visited">Not Visited</option>
+                    <option value="visited">Visited</option>
                   </select>
                 </td>
               </tr>

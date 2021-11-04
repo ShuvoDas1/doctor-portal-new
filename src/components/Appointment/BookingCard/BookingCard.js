@@ -29,7 +29,7 @@ const BookingCard = ({booking}) => {
           <h6 class="card-subtitle mb-2">{booking.visitingHour}</h6>
           <small class="card-text"> {booking.totalSpace} SPACES AVAILABLE </small>
           <button onClick={openModal} className='btn btn-info text-white mt-2' style={{borderRadius: '0'}}>BOOK APPOINTMENT</button>
-          <AppointmentForm modalIsOpen={modalIsOpen} closeModal={closeModal} appointmentOn={booking.subject}></AppointmentForm>
+          <AppointmentForm modalIsOpen={modalIsOpen} closeModal={closeModal} visitingHour={booking.visitingHour} appointmentOn={booking.subject}></AppointmentForm>
         </div>
       </div>
     </div>

@@ -1,23 +1,32 @@
-import Modal from "react-modal";
-import { useForm } from "react-hook-form";
-import {connect} from 'react-redux'
-import { addAppointment } from "../../../Redux/AppointmentDetails/AppointmentDetailsActions";
+import Modal from 'react-modal'
+import { useForm } from 'react-hook-form'
+import { connect } from 'react-redux'
+import { addAppointment } from '../../../Redux/AppointmentDetails/AppointmentDetailsActions'
+import './AppointmentForm.scss';
+
 
 const customStyles = {
   content: {
     // width: "550px",
-    padding: "30px",
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)"
-  }
-};
-Modal.setAppElement("#root");
+    padding: '30px',
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+}
+Modal.setAppElement('#root')
 
-const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn,date, addAppointment }) => {
+const AppointmentForm = ({
+  modalIsOpen,
+  closeModal,
+  appointmentOn,
+  date,
+  addAppointment,
+  visitingHour
+}) => {
   // const [appointment, setAppointment] = useState({
   //   // name: '',
   //   // phoneNumber: '',
@@ -26,31 +35,34 @@ const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn,date, addAppoi
   //   // weight: ''
   // })
   // console.log(date);
-  const {register, handleSubmit,formState: { errors }} = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
 
-  const onSubmit = data => {
+  const onSubmit = (data) => {
+    data.service = appointmentOn
+    data.isVisited = 'Not Visited'
+    data.date = date.toDateString()
+    data.created = new Date().toDateString()
+    data.visitingHour = visitingHour
 
-        data.service = appointmentOn;
-        data.date= date.toDateString();
-        data.created= new Date().toDateString();
-        
-        addAppointment(data);
-        closeModal();
-        alert('Appointment submit successfully')
-      
-      // fetch('http://localhost:4000/addAppointment',{
-      //       method: 'POST',
-      //       headers:{'Content-Type': 'application/json'},
-      //       body: JSON.stringify(data)
-      //   })
-      //   .then(res => res.json())
-      //   .then(success => {
-      //       closeModal();
-      //       
-      //   })       
-  };
+    addAppointment(data)
+    closeModal()
+    alert('Appointment submit successfully')
 
-  
+    // fetch('http://localhost:4000/addAppointment',{
+    //       method: 'POST',
+    //       headers:{'Content-Type': 'application/json'},
+    //       body: JSON.stringify(data)
+    //   })
+    //   .then(res => res.json())
+    //   .then(success => {
+    //       closeModal();
+    //
+    //   })
+  }
 
   return (
     <div>
@@ -60,15 +72,17 @@ const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn,date, addAppoi
         style={customStyles}
         contentLabel="Example Modal"
       >
-          <h3 className='text-center text-info'>{appointmentOn}</h3>
-          <p className='text-center text-secondary'><small>On {date.toDateString()}</small></p>
-        <form className='p-5' onSubmit={handleSubmit(onSubmit)}>
+        <h3 className="text-center text-info">{appointmentOn}</h3>
+        <p className="text-center text-secondary">
+          <small>On {date.toDateString()}</small>
+        </p>
+        <form className="p-5 form" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
             <input
               name="name"
               className="form-control"
               placeholder="Enter Your Name"
-              {...register("name", { required: true })}
+              {...register('name', { required: true })}
             />
             {errors.name && <span>This field is required</span>}
           </div>
@@ -77,7 +91,7 @@ const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn,date, addAppoi
               name="phoneNumber"
               className="form-control"
               placeholder="Enter Your Phone Number"
-              {...register("phoneNumber", { required: true })}
+              {...register('phoneNumber', { required: true })}
             />
             {errors.phoneNumber && <span>This field is required</span>}
           </div>
@@ -86,7 +100,7 @@ const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn,date, addAppoi
               name="email"
               className="form-control"
               placeholder="Enter Your email"
-              {...register("email", { required: true })}
+              {...register('email', { required: true })}
             />
             {errors.email && <span>This field is required</span>}
           </div>
@@ -97,7 +111,7 @@ const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn,date, addAppoi
                 name="gender"
                 className="form-control"
                 id="inlineFormCustomSelect"
-                {...register("gender", { required: true })}
+                {...register('gender', { required: true })}
               >
                 <option selected value="Male">
                   Male
@@ -113,34 +127,38 @@ const AppointmentForm = ({ modalIsOpen, closeModal, appointmentOn,date, addAppoi
                 placeholder="Age"
                 name="age"
                 className="form-control"
-                {...register("age", { required: true })}
+                {...register('age', { required: true })}
               />
               {errors.age && <span>This field is required</span>}
             </div>
             <div className="form-group col-md-4">
               <input
                 type="text"
-                placeholder="VisitingHour AM/PM"
-                name="visitingHour"
+                placeholder="Weight"
+                name="weight"
                 className="form-control"
-                {...register("visitingHour", { required: true })}
+                {...register('weight', { required: true })}
               />
-              {errors.visitingHour && <span>This field is required</span>}
+              {errors.weight && <span>This field is required</span>}
             </div>
           </div>
+
           <div className="form-group ">
-            <input type="submit" className="btn btn-info w-100 text-white text-uppercase"/>
+            <input
+              type="submit"
+              className="btn btn-info w-100 text-white text-uppercase"
+            />
           </div>
         </form>
       </Modal>
     </div>
-  );
-};
-
-const mapStateToProps = (state) =>{
-    return{
-        date: state.appointmentDate.date
-    }
+  )
 }
 
-export default connect(mapStateToProps,{addAppointment}) (AppointmentForm);
+const mapStateToProps = (state) => {
+  return {
+    date: state.appointmentDate.date,
+  }
+}
+
+export default connect(mapStateToProps, { addAppointment })(AppointmentForm)
